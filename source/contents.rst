@@ -1,0 +1,3 @@
+.. toctree::
+
+    tmp/index.rst
