@@ -1,4 +1,7 @@
+目录
+======
 .. toctree::
+    :titlesonly:
 
     操作系统相关/index
     文本处理/index
@@ -8,3 +11,8 @@
     加密解密/index
     其它/index
 
+
+操作
+======
+* :ref:`genindex`
+* :ref:`search`
