@@ -1,5 +1,6 @@
-操作系统相关
+系统相关
 =============
 .. toctree::
 
     sys/index
+    os/index

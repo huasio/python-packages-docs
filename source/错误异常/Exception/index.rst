@@ -1,0 +1,8 @@
+Exception
+###########
+
+
+.. toctree::
+
+    OSError
+    FileNotFoundError
