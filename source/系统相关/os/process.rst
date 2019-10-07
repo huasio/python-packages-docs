@@ -21,7 +21,7 @@
 
 .. _os-ctermid:
 
-- os.ctermid()
+* os.ctermid()
     返回与进程控制终端对应的文件名。
 
     .. note::
