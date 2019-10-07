@@ -2,3 +2,5 @@
 ##########
 
 .. toctree::
+
+    importlib/index

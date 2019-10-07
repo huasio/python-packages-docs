@@ -3,3 +3,5 @@
 .. toctree::
 
     hashlib/index
+    getpass/index
+    pwd/index
