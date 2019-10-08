@@ -29,7 +29,7 @@ source_suffix = '.rst'
 
 # -- Project information -----------------------------------------------------
 
-project = 'python-packages-docs'
+project = 'Python 标准库和第三方库（综合文档）'
 copyright = '2019, huasio'
 author = 'huasio'
 
