@@ -1,22 +1,6 @@
 进程参数
 ==========
 
-简介
-----------
-该模块提供了一些方便使用操作系统相关功能的函数。
-
-关于这些函数的可用性的说明：
-
-* 所有 `Python`_ 内建的操作系统相关的模块的设计都是为了使得在同一功能可用的情况下，保持接口的一致性；例如，函数 :ref:`os.stat(path) <os-stat>` 以相同的格式返回关于 `path` 的统计信息（这个函数同时也是起源于 :ref:`POSIX`）。
-
-* 针对特定的操作的拓展同样在可用于 `os` 模块，但是使用它们必然会对可移植性产生威胁。
-
-* 所有接受路径或文件名的函数都同时支持字节串和字符串对象，并在返回路径或文件名时使用相应类型的对象作为结果。
-
-
-方法属性
---------
-
 这些函数和数据项提供了操作当前进程和用户的信息。
 
 .. _os-ctermid:
@@ -37,7 +21,8 @@
 
     这个映射是在第一次导入 `os` 模块时捕获的，通常作为 `Python`_ 启动时处理 `site.py` 的一部分。除了通过直接修改 ``os.environ`` 之外，在此之后对环境所做的更改不会反映在 ``os.environ`` 中。
 
-    如果平台支持 `putenv()`_ 函数，这个映射除了可以用于查询环境外还能用于修改环境。 当这个映射被修改时，`putenv()`_
+    如果平台支持 :ref:`os.putenv() <os-putenv>` 函数，这个映射除了可以用于查询环境外还能用于修改环境。
+    当这个映射被修改时，:ref:`os.putenv() <os-putenv>`
     将被自动调用。
 
     在Unix系统上，键和值会使用 :ref:`sys.getfilesystemencoding()
@@ -45,12 +30,12 @@
     的错误处理。如果你想使用其他的编码，使用 :ref:`os.environb <os-environb>`。
 
     .. note::
-        直接调用 `putenv()`_ 并不会影响 ``os.environ``，所以推荐直接修改 ``os.environ``。
+        直接调用 :ref:`os.putenv() <os-putenv>` 并不会影响 ``os.environ``，所以推荐直接修改 ``os.environ``。
     .. note::
-         在某些平台上，包括 `FreeBSD` 和 `Mac OS X`，设置 ``environ`` 可能导致内存泄露。参阅 `putenv()`_
+         在某些平台上，包括 `FreeBSD` 和 `Mac OS X`，设置 ``environ`` 可能导致内存泄露。参阅 :ref:`os.putenv() <os-putenv>`
          的系统文档。
 
-    如果平台没有提供 `putenv()`_, 为了使启动的子进程使用修改后的环境，一份修改后的映射会被传给合适的进程创建函数。
+    如果平台没有提供 :ref:`os.putenv() <os-putenv>`, 为了使启动的子进程使用修改后的环境，一份修改后的映射会被传给合适的进程创建函数。
 
     如果平台支持 `unsetenv()`_ 函数，你可以通过删除映射中元素的方式来删除对应的环境变量。当一个元素被从 ``os.environ``
     删除时，以及 ``pop()`` 或 ``clear()`` 被调用时， `unsetenv()`_ 会被自动调用。
@@ -297,6 +282,69 @@
 
         3.3 新版功能.
 
+- os.PRIO_PROCESS
+- os.PRIO_PGRP
+- os.PRIO_USER
+
+    函数 :ref:`getpriority() <os-getpriority>` 和 :ref:`setpriority()
+    <os-setpriority>` 的参数。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.3 新版功能.
+
+
+.. _os-getresuid:
+
+- os.getresuid()
+    返回一个由 (`ruid`, `euid`, `suid`) 所组成的元组，分别表示当前进程的真实用户 `ID`，有效用户 `ID`
+    和暂存用户 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.2 新版功能.
+
+.. _os-getresgid:
+
+- os.getresgid()
+    返回一个由 (`rgid`, `egid`, `sgid`) 所组成的元组，分别表示当前进程的真实组 `ID`，有效组 `ID` 和暂存组 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.2 新版功能.
+
+.. _os-getuid:
+
+- os.getuid()
+    返回当前进程的真实用户 `ID`。
+
+    .. note::
+
+        :ref:`可用性`: `Unix`。
+
+.. _os-initgroups:
+
+- os.initgroups(username, gid)
+    调用系统 ``initgroups()``，使用指定用户所在的所有值来初始化组访问列表，包括指定的组 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.2 新版功能.
+
+.. _os-putenv:
+
+- os.putenv(key, value)
+    将名为 `key` 的环境变量值设置为 `value`。该变量名修改会影响由 :ref:`os.system() <os-system>`，
+    :ref:`popen() <os-popen>`，:ref:`fork() <os-fork>` 和 :ref:`execv() <os-execv>` 发起的子进程。
+
+    .. note::
+        :ref:`可用性`: 大部分的 `Unix` 系统，`Windows`。
+        在一些平台，包括 `FreeBSD` 和 `Mac OS X`，设置 :ref:`environ <os-environ>`
+        可能导致内存泄露。详情参考 ``putenv`` 相关系统文档。
 
 .. _os-setgroups:
 
@@ -311,9 +359,109 @@
         如果它没有返回与调用 ``setgroups()`` 所设置的相同的组列表，请参阅 :ref:`getgroups()
         <os-getgroups>` 的文档。
 
-.. _os-stat:
 
-- os.stat(path)
+.. _os-setpgrp:
+
+- os.setpgrp()
+    根据已实现的版本（如果有）来调用系统 ``setpgrp()`` 或 ``setpgrp(0, 0)`` 。
+
+    相关说明，请参考 `Unix` 手册。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-setpgid:
+
+- os.setpgid(pid, pgrp)
+    使用系统调用 `setpgid()`，将 `pid` 对应进程的组 `ID` 设置为 ``pgrp``。相关说明，请参考 `Unix` 手册。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-setpriority:
+
+- os.setpriority(which, who, priority)
+    设置程序调度优先级。
+
+    ``which`` 的值为 `PRIO_PROCESS`, `PRIO_PGRP` 或 `PRIO_USER` 之一.
+
+    而 ``who`` 会相对于 ``which`` (`PRIO_PROCESS` 的进程标识符, `PRIO_PGRP` 的进程组标识符和`PRIO_USER` 的用户 `ID`) 被解析。
+
+    ``who`` 值为零 (分别) 表示调用进程，调用进程的进程组或调用进程的真实用户 `ID`。
+
+    ``priority`` 是范围在 `-20` 至 `19` 的值。 默认优先级为 `0`；较小的优先级数值会更优先被调度。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.3 新版功能.
+
+.. _os-setregid:
+
+- os.setregid(rgid, egid)
+    设置当前进程的真实和有效组 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-setresgid:
+
+- os.setresgid(rgid, egid, sgid)
+    设置当前进程的真实，有效和暂存组 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.2 新版功能.
+
+.. _os-setresuid:
+
+- os.setresuid(ruid, euid, suid)
+    设置当前进程的真实，有效和暂存用户 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+        3.2 新版功能.
+
+.. _os-setreuid:
+
+- os.setreuid(ruid, euid)
+    设置当前进程的真实和有效用户 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-getsid:
+
+- os.getsid(pid)
+    调用系统调用 ``getsid()``。 相关语义请参阅 `Unix` 手册。
+
+    .. note::
+        :ref:`可用性`: Unix。
+
+.. _os-setsid:
+
+- os.setsid()
+    使用系统调用 :ref:`getsid() <os-getsid>`。相关说明，请参考 `Unix` 手册。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-setuid:
+
+- os.setuid(uid)
+    设置当前进程的用户 `ID`。
+
+    .. note::
+        :ref:`可用性`: `Unix`。
+
+.. _os-strerror:
+
+- os.strerror(code)
+    根据 `code` 中的错误码返回错误消息。
+    在某些平台上当给出未知错误码时 ``strerror()`` 将返回 ``NULL`` 并会引发 :ref:`ValueError
+    <OSError-ValueError>`。
 
 .. _os-supports_bytes_environ:
 
@@ -323,9 +471,54 @@
     .. note::
         3.2 新版功能.
 
+.. _os-umask:
+
+- os.umask(mask)
+    设定当前数值掩码并返回之前的掩码。
+
+.. _os-uname:
+
+- os.uname()
+    返回当前操作系统的识别信息。返回值是一个有 `5` 个属性的对象：
+
+    - sysname - 操作系统名
+
+    - nodename - 机器在网络上的名称（需要先设定）
+
+    - release - 操作系统发行信息
+
+    - version - 操作系统版本信息
+
+    - machine - 硬件标识符
+
+    为了向后兼容，该对象也是可迭代的，像是一个按照 ``sysname``，``nodename``，``release``，``version``，和 ``machine`` 顺序组成的元组。
+
+    有些系统会将 ``nodename`` 截短为 `8` 个字符或截短至前缀部分；获取主机名的一个更好方式是 :ref:`socket
+    .gethostname() <socket-gethostname>` 或甚至可以用 :ref:`socket.gethostbyaddr(socket.gethostname()) <socket-gethostbyaddr>`。
+
+    .. note::
+        :ref:`可用性`: 较新的 `Unix` 版本。
+
+        在 3.3 版更改: 返回结果的类型由元组变成一个类似元组的对象，同时具有命名的属性。
+
+
+.. _os-unsetenv:
+
+- os.unsetenv(key)
+    取消设置（删除）名为 `key` 的环境变量。变量名的改变会影响由 :ref:`os.system() <os-system>`,
+    :ref:`popen() <os.popen>`，:ref:`fork() <os-fork>` 和 :ref:`execv() <os.execv>` 触发的子进程。
+
+    当系统支持 ``unsetenv()`` ，删除在 :ref:`os.environ <os-environ>` 中的变量会自动转换为对
+    ``unsetenv()`` 的调用。
+
+    但是 ``unsetenv()`` 不能更新 :ref:`os.environ<os-environ>`，因此最好直接删除 :ref:`os.environ <os-environ>` 中的变量。
+
+    .. note::
+        :ref:`可用性`: 大部分的 `Unix` 系统，`Windows`。
+
+
 .. _Python: https://www.python.org/
 .. _mapping: https://docs.python.org/zh-cn/3/glossary.html#term-mapping
-.. _putenv(): https://docs.python.org/zh-cn/3/library/os.html?highlight=os#os.putenv
 .. _unsetenv(): https://docs.python.org/zh-cn/3/library/os.html?highlight=os#os.unsetenv
 .. _路径类: https://docs.python.org/zh-cn/3/glossary.html#term-path-like-object
 .. _抽象基类: https://docs.python.org/zh-cn/3/glossary.html#term-abstract-base-class
