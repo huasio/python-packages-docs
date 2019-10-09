@@ -1,6 +1,8 @@
 sysconfig
 ##########
 
+.. py:module:: sysconfig
+
 .. toctree::
 
     setting_vars

@@ -17,5 +17,6 @@
 
 操作
 ======
+* :ref:`modindex`
 * :ref:`genindex`
 * :ref:`search`

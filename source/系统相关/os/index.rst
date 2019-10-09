@@ -1,6 +1,8 @@
 os
 ##########
 
+.. py:module:: os
+
 .. toctree::
 
     overview

@@ -1,6 +1,7 @@
 Exception
 ###########
 
+.. py:module:: Exception
 
 .. toctree::
 

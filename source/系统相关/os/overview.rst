@@ -22,6 +22,7 @@
     导入的依赖特定操作系统的模块的名称。以下名称目前已注册: ``posix``, ``nt``, ``java``.
 
 
+
 .. hint::
      :ref:`sys.platform <sys.platform>` 有更详细的描述. :ref:`os.uname() <os-uname>`
      只给出系统提供的版本信息。:ref:`platform <sys.platform>`
