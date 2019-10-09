@@ -62,6 +62,9 @@
 
 - .. py:method:: os.chdir(path)
 
+    :param path: 将工作目录修改为 path 路径
+    :type path: string
+
     将当前工作目录更改为 ``path``。
 
     这个函数可以支持指定文件描述符，描述符必须指向打开的目录，而不是打开的文件。
@@ -80,7 +83,20 @@
 
 - .. py:method:: os.fchdir(fd)
 
+    :param fd: 文件描述符
+    :type fd: int
+
     将当前工作目录更改为文件描述符 ``fd`` 表示的目录，描述符必须指向打开的目录，而不是打开的文件。
+
+    示例：
+
+    >>> import os
+    >>> fd = os.open('/tmp', os.O_RDONLY)
+    >>> type(fd)
+    int
+    >>> os.fchdir(fd)
+    >>> os.getcwd()
+    /tmp
 
     .. note::
         从 `Python 3.3` 开始，这就相当于 ``os.chdir(fd)``。
@@ -98,6 +114,10 @@
 .. _os-fsencode:
 
 - .. py:method:: os.fsencode(filename)
+
+    :param filename: 编码 `路径类`_ 文件名
+    :type filename: str, bytes, object
+
 
     编码 `路径类`_ 文件名 为文件系统接受的形式，使用 ``surrogateescape``
     代理转义编码错误处理器，在 `Windows` 系统上会使用 ``strict`` ；返回 ``bytes`` 字节类型不变。
@@ -129,6 +149,9 @@
 
 - .. py:method:: os.fspath(path)
 
+    :param path: 判断路径是否是 str 和 bytes 类型，否抛出异常
+    :type path: str, bytes
+
     返回路径的文件系统表示。
 
     如果传入的是 ``str`` 或 ``bytes`` 类型的字符串，将原样返回。否则 :ref:`__fspath__()
@@ -141,7 +164,7 @@
 
 .. _os-PathLike:
 
-- class os.PathLike
+- .. class:: class os.PathLike
     描述表示一个文件系统路径的 `抽象基类`_ ，如 ``pathlib.PurePath``。
 
     .. note::
@@ -158,6 +181,12 @@
 
 - .. py:method:: os.getenv(key, default=None)
 
+    :param key: 环境变量名称
+    :param default: 默认值
+
+    :type key: string
+    :type default: None
+
     如果存在，返回环境变量 ``key`` 的值，否则返回 ``default``。 ``key`` ， ``default`` 和返回值均为 ``str`` 字符串类型。
 
     在 `Unix` 系统上，键和值会使用 :ref:`sys.getfilesystemencoding() <getfilesystemencoding>`
@@ -170,6 +199,12 @@
 .. _os-getenvb:
 
 - .. py:method:: os.getenvb(key, default=None)
+
+    :param key: 环境变量名称
+    :param default: 默认值
+
+    :type key: string
+    :type default: None
 
     如果存在环境变量 ``key`` 那么返回其值，否则返回 ``default``。 key ， ``default`` 和返回值均为
     ``bytes`` 字节串类型。
@@ -184,6 +219,9 @@
 .. _os-get_exec_path:
 
 - .. py:method:: os.get_exec_path(env=None)
+
+    :param env: 环境变量路径
+    :type env: dict
 
     返回将用于搜索可执行文件的目录列表，与在外壳程序中启动一个进程时相似。指定的 `env` 应为用于搜索 `PATH`
     的环境变量字典。默认情况下，当 `env` 为 ``None`` 时，将会使用 :ref:`environ <os-environ>` 。
