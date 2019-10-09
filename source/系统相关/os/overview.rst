@@ -11,4 +11,21 @@
 
 * 所有接受路径或文件名的函数都同时支持字节串和字符串对象，并在返回路径或文件名时使用相应类型的对象作为结果。
 
+.. note::
+    如果文件名和路径无效或不可访问，或者其他参数的类型正确，但操作系统不接受，则此模块中的所有函数都会引发 :ref:`OSError <OSError>`
+    (或其子类)。
+
+- exception os.error
+    内建的 OSError 异常的一个别名。
+
+- os.name
+    导入的依赖特定操作系统的模块的名称。以下名称目前已注册: ``posix``, ``nt``, ``java``.
+
+
+.. hint::
+     :ref:`sys.platform <sys.platform>` 有更详细的描述. :ref:`os.uname() <os-uname>`
+     只给出系统提供的版本信息。:ref:`platform <sys.platform>`
+     模块对系统的标识有更详细的检查。
+
+
 .. _Python: https://www.python.org/
