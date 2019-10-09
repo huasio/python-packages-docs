@@ -63,6 +63,7 @@
 - .. py:method:: os.chdir(path)
 
     :param path: 将工作目录修改为 path 路径
+
     :type path: string
 
     将当前工作目录更改为 ``path``。
@@ -84,6 +85,7 @@
 - .. py:method:: os.fchdir(fd)
 
     :param fd: 文件描述符
+
     :type fd: int
 
     将当前工作目录更改为文件描述符 ``fd`` 表示的目录，描述符必须指向打开的目录，而不是打开的文件。
@@ -116,6 +118,7 @@
 - .. py:method:: os.fsencode(filename)
 
     :param filename: 编码 `路径类`_ 文件名
+
     :type filename: str, bytes, object
 
 
@@ -150,6 +153,7 @@
 - .. py:method:: os.fspath(path)
 
     :param path: 判断路径是否是 str 和 bytes 类型，否抛出异常
+
     :type path: str, bytes
 
     返回路径的文件系统表示。
@@ -182,7 +186,9 @@
 - .. py:method:: os.getenv(key, default=None)
 
     :param key: 环境变量名称
+
     :param default: 默认值
+
 
     :type key: string
     :type default: None
@@ -201,10 +207,13 @@
 - .. py:method:: os.getenvb(key, default=None)
 
     :param key: 环境变量名称
+
     :param default: 默认值
 
     :type key: string
+
     :type default: None
+
 
     如果存在环境变量 ``key`` 那么返回其值，否则返回 ``default``。 key ， ``default`` 和返回值均为
     ``bytes`` 字节串类型。
@@ -221,6 +230,7 @@
 - .. py:method:: os.get_exec_path(env=None)
 
     :param env: 环境变量路径
+
     :type env: dict
 
     返回将用于搜索可执行文件的目录列表，与在外壳程序中启动一个进程时相似。指定的 `env` 应为用于搜索 `PATH`
