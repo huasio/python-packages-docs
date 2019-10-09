@@ -169,6 +169,7 @@
 .. _os-PathLike:
 
 - .. class:: class os.PathLike
+
     描述表示一个文件系统路径的 `抽象基类`_ ，如 ``pathlib.PurePath``。
 
     .. note::
