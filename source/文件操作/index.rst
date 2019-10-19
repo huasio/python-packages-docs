@@ -5,4 +5,3 @@
 
     xlwt/index
     xlrd/index
-    shelve/index
