@@ -4,3 +4,5 @@
 
     sys/index
     os/index
+    subprocess/index
+    threading/index

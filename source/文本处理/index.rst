@@ -7,3 +7,4 @@
     chardet/index
     json/index
     re/index
+    pyperclip/index
