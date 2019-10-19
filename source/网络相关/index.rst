@@ -4,4 +4,5 @@
 
     urllib/index
     requests/index
+    socket/index
 
