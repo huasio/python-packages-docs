@@ -1,2 +1,4 @@
 selenium
 ===========
+
+.. py:module:: selenium

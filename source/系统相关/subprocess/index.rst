@@ -1,2 +1,4 @@
 subprocess
 =============
+
+.. py:module:: subprocess

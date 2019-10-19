@@ -1,2 +1,4 @@
 pprint
 =============
+
+.. py:module:: pprint

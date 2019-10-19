@@ -1,2 +1,4 @@
 threading
 ===========
+
+.. py:module:: threading

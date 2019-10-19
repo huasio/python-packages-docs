@@ -1,2 +1,4 @@
 shelve
 ==========
+
+.. py:module:: shelve

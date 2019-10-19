@@ -1,6 +1,8 @@
 文本处理
 ==========
 
+.. py:module:: pyperclip
+
 .. toctree::
 
     jieba/index
