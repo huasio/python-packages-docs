@@ -5,6 +5,7 @@
 
     系统相关/index
     错误异常/index
+    日志记录/index
     文本处理/index
     文件操作/index
     网络相关/index
